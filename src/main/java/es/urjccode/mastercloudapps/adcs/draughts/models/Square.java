@@ -4,8 +4,7 @@ class Square {
 
     private Piece piece;
 
-    Square() {
-    }
+    Square() { }
 
     void put(Piece piece) {
         this.piece = piece;
@@ -13,7 +12,7 @@ class Square {
 
     Piece remove() {
         Piece newpiece = this.piece;
-        this.piece = null;
+        put(null);
         return newpiece;
     }
 
@@ -22,14 +21,14 @@ class Square {
     }
 
     public boolean isEmpty() {
-        return this.piece == null;
+        return this.getPiece() == null;
     }
 
     public Color getColor() {
-        if (piece == null) {
+        if (this.getPiece() == null) {
             return null;
         }
-        return this.piece.getColor();
+        return this.getPiece().getColor();
     }
 
 }
