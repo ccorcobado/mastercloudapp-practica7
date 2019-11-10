@@ -11,7 +11,7 @@ public class PlayView extends SubView {
     }
 
     public void interact(PlayController playController) {
-        String color = new PieceView().getLongMessage(playController.getColor());
+        String color = ColorView.values()[playController.getColor().ordinal()].getMessage();
         Error error;
         GameView gameView = new GameView();
         do {
