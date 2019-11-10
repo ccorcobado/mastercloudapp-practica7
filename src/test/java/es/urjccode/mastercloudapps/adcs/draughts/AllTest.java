@@ -12,5 +12,4 @@ import es.urjccode.mastercloudapps.adcs.draughts.views.AllViewTest;
     AllModelTest.class, 
     AllControllerTest.class, 
     AllViewTest.class } )
-public final class AllTest {
-}
+public final class AllTest { }

@@ -7,7 +7,7 @@ class Board {
 
     private static final int DIMENSION = 8;
 
-    private Square[][] squares;
+    private final Square[][] squares;
 
     Board() {
         this.squares = new Square[this.getDimension()][this.getDimension()];
@@ -49,12 +49,13 @@ class Board {
         return this.getSquare(coordinate).getColor();
     }
 
-    // TODO: Aqui hay un bug, no acaba la partida
     List<Piece> getPieces(Color color) {
         List<Piece> pieces = new ArrayList<>();
         for (int i = 0; i < this.getDimension(); i++) {
             for (int j = 0; j < this.getDimension(); j++) {
-                pieces.add(this.squares[i][j].getPiece());
+                Piece piece = this.getPiece(new Coordinate(i, j));
+                if (piece != null && piece.getColor() == color)
+                    pieces.add(piece);
             }
         }
         return pieces;
