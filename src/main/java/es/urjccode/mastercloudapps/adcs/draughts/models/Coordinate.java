@@ -26,16 +26,20 @@ public class Coordinate {
         return this.isInRange(this.getRow()) && this.isInRange(this.getColumn());
     }
 
-    int sumDiagonal() {
+    int sumComponents() {
         return this.getRow() + this.getColumn();
     }
     
-    int diffDiagonal() {
+    int diffComponents() {
         return this.getRow() - this.getColumn();
     }
     
-    int diffRow(Coordinate coordinate) {
+    int diffRows(Coordinate coordinate) {
         return this.getRow() - coordinate.getRow();
+    }
+    
+    int diffColumns(Coordinate coordinate) {
+        return this.getColumn() - coordinate.getColumn();
     }
     
     private void assertCoordinate(Coordinate coordinate) {
@@ -45,33 +49,35 @@ public class Coordinate {
     public boolean isDiagonal(Coordinate coordinate) {
         assertCoordinate(coordinate);
         assertCoordinate(this);
-        return this.sumDiagonal() == coordinate.sumDiagonal() || this.diffDiagonal() == coordinate.diffDiagonal();
+        return this.sumComponents() == coordinate.sumComponents() || this.diffComponents() == coordinate.diffComponents();
     }
 
     public int diagonalDistance(Coordinate coordinate) {
         assertCoordinate(coordinate);
         assertCoordinate(this);
         assert this.isDiagonal(coordinate);
-        return Math.abs(this.getRow() - coordinate.getRow());
+        
+        return Math.abs(this.diffRows(coordinate));
     }
 
+    private int calculateShift(int diffElements) {
+        return (diffElements < 0) ? - 1 : 1;
+    }
+    
     public Coordinate betweenDiagonal(Coordinate coordinate) {
-        assert coordinate != null && coordinate.isValid();
-        assert this.isValid() && this.diagonalDistance(coordinate) == 2;
-        int rowShift = 1;
-        if (coordinate.getRow() - this.getRow() < 0) {
-            rowShift = -1;
-        }
-        int columnShift = 1;
-        if (coordinate.getColumn() - this.getColumn() < 0) {
-            columnShift = -1;
-        }
+        assertCoordinate(coordinate);
+        assertCoordinate(this);
+        assert this.diagonalDistance(coordinate) == 2;
+        
+        int rowShift = calculateShift(coordinate.diffRows(this));
+        int columnShift = calculateShift(coordinate.diffColumns(this));
         return new Coordinate(this.getRow() + rowShift, this.getColumn() + columnShift);
     }
 
     public boolean isBlack() {
         assert this.isValid();
-        return (this.getRow() + this.getColumn()) % 2 != 0;
+        
+        return (this.sumComponents()) % 2 != 0;
     }
 
     int getRow() {
