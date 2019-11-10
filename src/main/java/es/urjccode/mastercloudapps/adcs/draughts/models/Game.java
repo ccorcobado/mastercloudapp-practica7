@@ -96,5 +96,4 @@ public class Game {
     public int getDimension() {
         return this.board.getDimension();
     }
-
 }

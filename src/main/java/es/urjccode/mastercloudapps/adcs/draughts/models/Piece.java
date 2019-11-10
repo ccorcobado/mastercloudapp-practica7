@@ -13,7 +13,8 @@ public class Piece {
     }
 
     public boolean isAdvanced(Coordinate origin, Coordinate target) {
-        int difference = origin.getRow() - target.getRow();
+        int difference = origin.diffRows(target);
+        // int difference = origin.getRow() - target.getRow();
         if (color == Color.WHITE) {
             return difference > 0;
         }
