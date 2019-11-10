@@ -1,18 +1,16 @@
 package es.urjccode.mastercloudapps.adcs.draughts.views;
 
-import es.urjccode.mastercloudapps.adcs.draughts.utils.Console;
+import es.urjccode.mastercloudapps.adcs.draughts.models.Color;
 
 public enum ColorView {
     WHITE("blancas"),
     BLACKS("negras"),
-    EMPTY(" ");    
+    EMPTY(" ");
     
     private final String message;
-    private final Console console;
     
     private ColorView(String message) {
         this.message = message;
-        this.console = new Console();
     }
     
     public String getMessage() {
@@ -23,11 +21,8 @@ public enum ColorView {
         return new String(new char[] { this.getMessage().charAt(0) });
     }
     
-    public void write() {
-        this.console.write(this.message);
-    }
-    
-    public void writeln() {
-        this.console.writeln(this.message);
+    public static ColorView valueOf(Color color) {
+        return (color == null) ? 
+                ColorView.EMPTY : ColorView.values()[color.ordinal()];
     }
 }

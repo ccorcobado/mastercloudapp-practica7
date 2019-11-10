@@ -56,7 +56,7 @@ public class Console {
     public void writeln() {
         System.out.println();
     }
-
+    
     public void write(String string) {
         System.out.print(string);
     }
