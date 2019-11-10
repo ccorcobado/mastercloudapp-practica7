@@ -1,6 +1,7 @@
 package es.urjccode.mastercloudapps.adcs.draughts.models;
 
 public class BoardBuilder {
+    
     private static final int TOP = 0;
     private static final int MIDDLE_TOP = 3;
     private static final int MIDDLE_BOTTOM = 5;

@@ -39,7 +39,7 @@ public class Session {
     }
 
     public Color getColor() {
-        return this.getGame().getTurn();
+        return this.getGame().getTurnColor();
     }
 
     public Color getColor(Coordinate coordinate) {
