@@ -9,12 +9,12 @@ import es.urjccode.mastercloudapps.adcs.draughts.controllers.StartController;
 public class View implements ControllersVisitor {
 
     private final StartView startView;
-    private final CommandView commandView;
+    private final PlayView playView;
     private final ResumeView resumeView;
 
     public View() {
         this.startView = new StartView();
-        this.commandView = new CommandView();
+        this.playView = new PlayView();
         this.resumeView = new ResumeView();
     }
 
@@ -29,7 +29,7 @@ public class View implements ControllersVisitor {
 
     @Override
     public void visit(PlayController playController) {
-        this.commandView.interact(playController);
+        this.playView.interact(playController);
     }
 
     @Override
