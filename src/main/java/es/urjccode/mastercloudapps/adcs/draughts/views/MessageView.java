@@ -4,7 +4,8 @@ import es.urjccode.mastercloudapps.adcs.draughts.utils.Console;
 
 public enum MessageView {
     
-    TITLE("Draughts");
+    TITLE("Draughts"),
+    OTHER_GAME("¿Queréis jugar otra");
     
     private final String message;
     private final Console console;
@@ -12,6 +13,10 @@ public enum MessageView {
     private MessageView(String message) {
         this.message = message;
         this.console = new Console();
+    }
+    
+    public String getMessage() {
+        return this.message;
     }
     
     public void write() {
