@@ -23,7 +23,7 @@ public class PlayView extends SubView {
             this.evaluateMessageError(error, playController);
         } while (error != null);
         
-        this.evaluateEndGame(playController);
+        this.evaluateMessageEndGame(playController);
     }
     
     private void evaluateMessageError(Error error, PlayController playController) {
@@ -33,7 +33,7 @@ public class PlayView extends SubView {
         }
     }
     
-    private void evaluateEndGame(PlayController playController) {
+    private void evaluateMessageEndGame(PlayController playController) {
         if (playController.isBlocked()) {
             MessageView.LOSE.write();
         }
