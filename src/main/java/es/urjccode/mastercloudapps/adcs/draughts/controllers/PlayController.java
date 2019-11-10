@@ -13,7 +13,14 @@ public class PlayController extends Controller {
     }
 
     public Error move(Coordinate origin, Coordinate target) {
+        assert origin != null && target != null;
+        
+        if (!origin.isValid() || !target.isValid()) {
+            return Error.OUT_COORDINATE;
+        }
+        
         Error error = this.session.move(origin, target);
+        
         if (this.session.isBlocked()) {
             this.session.next();
         }
