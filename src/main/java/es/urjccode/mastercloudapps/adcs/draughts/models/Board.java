@@ -61,7 +61,7 @@ class Board {
         return pieces;
     }
 
-    int getDimension() {
+    final int getDimension() {
         return Board.DIMENSION;
     }
 }
