@@ -10,39 +10,47 @@ public class Session {
         this.game = new Game();
     }
 
-    public StateValue getValueState() {
-        return this.state.getValueState();
+    State getState() {
+        return this.state;
     }
-
+    
+    Game getGame() {
+        return this.game;
+    }
+    
+    public StateValue getValueState() {
+        return this.getState().getValueState();
+    }
+    
     public void next() {
-        this.state.next();
+        this.getState().next();
     }
 
     public void reset() {
-        this.state.reset();
+        this.getState().reset();
     }
 
     public Error move(Coordinate origin, Coordinate target) {
-        return this.game.move(origin, target);
+        return this.getGame().move(origin, target);
     }
 
     public Piece getPiece(Coordinate coordinate) {
-        return this.game.getPiece(coordinate);
+        return this.getGame().getPiece(coordinate);
     }
 
     public Color getColor() {
-        return this.game.getColor();
+        return this.getGame().getColor();
     }
 
     public Color getColor(Coordinate coordinate) {
-        return this.game.getColor(coordinate);
+        return this.getGame().getColor(coordinate);
     }
 
     public boolean isBlocked() {
-        return this.game.isBlocked();
+        return this.getGame().isBlocked();
     }
 
     public int getDimension() {
-        return this.game.getDimension();
+        return this.getGame().getDimension();
     }
 }
