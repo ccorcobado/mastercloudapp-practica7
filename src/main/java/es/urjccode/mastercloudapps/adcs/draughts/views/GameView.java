@@ -19,7 +19,7 @@ public class GameView {
             this.pieceView.writeNumber(i + 1);
             for (int j = 0; j < DIMENSION; j++) {
                 Color color = controller.getColor(new Coordinate(i, j));
-                this.pieceView.writeShort(color);
+                this.pieceView.shortWrite(color);
             }
             this.pieceView.writelnNumber(i + 1);
         }
@@ -27,7 +27,7 @@ public class GameView {
     }
 
     private void writeNumbersLine(final int DIMENSION) {
-        this.pieceView.writeShort(null);
+        this.pieceView.shortWrite(null);
         for (int i = 0; i < DIMENSION; i++) {
             this.pieceView.writeNumber(i + 1);
         }
