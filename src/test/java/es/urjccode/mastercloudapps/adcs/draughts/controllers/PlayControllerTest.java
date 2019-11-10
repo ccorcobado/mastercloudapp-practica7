@@ -32,7 +32,7 @@ public class PlayControllerTest {
         Coordinate origin = new Coordinate(4, 7);
         Coordinate target = new Coordinate(3, 8);
         
-        assertEquals(Error.OUT_COORDINATE, playController.move( origin, target));
+        assertEquals(Error.OUT_COORDINATE, playController.move(origin, target));
     }
 
     // public void data(){
