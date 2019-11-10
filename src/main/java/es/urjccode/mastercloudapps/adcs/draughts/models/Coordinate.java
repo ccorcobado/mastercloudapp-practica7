@@ -97,5 +97,17 @@ public class Coordinate {
         }
         return true;
     }
-
+    
+    private static Coordinate getCoordinateFromCommand(String command, int i, int j) {
+        String format = command.substring(i, j);
+        return new Coordinate(format);
+    }
+    
+    public static Coordinate origin(String command) {
+        return getCoordinateFromCommand(command, 0, 2);
+    }
+    
+    public static Coordinate target(String command) {
+        return getCoordinateFromCommand(command, 3, 5);
+    }
 }
