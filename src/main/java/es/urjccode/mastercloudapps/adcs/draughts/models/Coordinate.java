@@ -18,9 +18,12 @@ public class Coordinate {
         this.column = column;
     }
 
+    private boolean isInRange(int number) {
+        return Coordinate.LOWER_LIMIT <= number && number <= Coordinate.UPPER_LIMIT;
+    }
+    
     public boolean isValid() {
-        return Coordinate.LOWER_LIMIT <= row && row <= Coordinate.UPPER_LIMIT && Coordinate.LOWER_LIMIT <= column
-                && column <= Coordinate.UPPER_LIMIT;
+        return this.isInRange(this.row) && this.isInRange(this.column);
     }
 
     public boolean isDiagonal(Coordinate coordinate) {
