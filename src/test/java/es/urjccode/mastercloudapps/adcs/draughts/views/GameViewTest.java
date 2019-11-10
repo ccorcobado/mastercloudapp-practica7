@@ -50,10 +50,11 @@ public class GameViewTest {
     public void testInteract(){
         StartController startController = new StartController(new Session());
         this.gameView.write(startController);
+        
         verify(this.pieceView, times(IndexNumber(24))).writeNumber(anyInt());
-        verify(this.pieceView, times(NumberOfPiecesPerColor(12))).shortWrite(Color.BLACK);
-        verify(this.pieceView, times(NumberOfPiecesPerColor(12))).shortWrite(Color.WHITE);
-        verify(this.pieceView, times(EmptyNumber(42))).shortWrite(null);
+        verify(this.pieceView, times(NumberOfPiecesPerColor(12))).writeShort(Color.BLACK);
+        verify(this.pieceView, times(NumberOfPiecesPerColor(12))).writeShort(Color.WHITE);
+        verify(this.pieceView, times(EmptyNumber(42))).writeShort(null);
         
 //        List<String> rows = Arrays.asList(
 //        " 12345678",

@@ -28,19 +28,19 @@ public class PieceView {
         return new String(new char[] { this.getLongMessage(color).charAt(0) });
     }
     
-    public void longWrite(Color color) {
+    public void writeLong(Color color) {
         this.console.write(this.getLongMessage(color));
     }
     
-    public void longWriteln(Color color) {
+    public void writelnLong(Color color) {
         this.console.writeln(this.getLongMessage(color));
     }
     
-    public void shortWrite(Color color) {
+    public void writeShort(Color color) {
         this.console.write(this.getShortMessage(color));
     }
     
-    public void shortWriteln(Color color) {
+    public void writelnShort(Color color) {
         this.console.writeln(this.getShortMessage(color));
     }
     
