@@ -23,39 +23,55 @@ public class Coordinate {
     }
     
     public boolean isValid() {
-        return this.isInRange(this.row) && this.isInRange(this.column);
+        return this.isInRange(this.getRow()) && this.isInRange(this.getColumn());
     }
 
-    public boolean isDiagonal(Coordinate coordinate) {
+    int sumDiagonal() {
+        return this.getRow() + this.getColumn();
+    }
+    
+    int diffDiagonal() {
+        return this.getRow() - this.getColumn();
+    }
+    
+    int diffRow(Coordinate coordinate) {
+        return this.getRow() - coordinate.getRow();
+    }
+    
+    private void assertCoordinate(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
-        assert this.isValid();
-        return this.row + this.column == coordinate.row + coordinate.column
-                || this.row - this.column == coordinate.row - coordinate.column;
+    }
+    
+    public boolean isDiagonal(Coordinate coordinate) {
+        assertCoordinate(coordinate);
+        assertCoordinate(this);
+        return this.sumDiagonal() == coordinate.sumDiagonal() || this.diffDiagonal() == coordinate.diffDiagonal();
     }
 
     public int diagonalDistance(Coordinate coordinate) {
-        assert coordinate != null && coordinate.isValid();
-        assert this.isValid() && this.isDiagonal(coordinate);
-        return Math.abs(this.row - coordinate.row);
+        assertCoordinate(coordinate);
+        assertCoordinate(this);
+        assert this.isDiagonal(coordinate);
+        return Math.abs(this.getRow() - coordinate.getRow());
     }
 
     public Coordinate betweenDiagonal(Coordinate coordinate) {
         assert coordinate != null && coordinate.isValid();
         assert this.isValid() && this.diagonalDistance(coordinate) == 2;
         int rowShift = 1;
-        if (coordinate.row - this.row < 0) {
+        if (coordinate.getRow() - this.getRow() < 0) {
             rowShift = -1;
         }
         int columnShift = 1;
-        if (coordinate.column - this.column < 0) {
+        if (coordinate.getColumn() - this.getColumn() < 0) {
             columnShift = -1;
         }
-        return new Coordinate(this.row + rowShift, this.column + columnShift);
+        return new Coordinate(this.getRow() + rowShift, this.getColumn() + columnShift);
     }
 
     public boolean isBlack() {
         assert this.isValid();
-        return (this.row + this.column) % 2 != 0;
+        return (this.getRow() + this.getColumn()) % 2 != 0;
     }
 
     int getRow() {
@@ -68,15 +84,15 @@ public class Coordinate {
 
     @Override
     public String toString() {
-        return "(" + row + ", " + column + ")";
+        return "(" + getRow() + ", " + getColumn() + ")";
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + column;
-        result = prime * result + row;
+        result = prime * result + getColumn();
+        result = prime * result + getRow();
         return result;
     }
 
@@ -92,10 +108,11 @@ public class Coordinate {
             return false;
         }
         Coordinate other = (Coordinate) obj;
-        if (column != other.column) {
+        if (getColumn() != other.getColumn()) {
             return false;
         }
-        if (row != other.row) {
+        if (getRow() == other.getRow()) {
+        } else {
             return false;
         }
         return true;
