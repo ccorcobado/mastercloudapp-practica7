@@ -2,22 +2,25 @@ package es.urjccode.mastercloudapps.adcs.draughts.views;
 
 import es.urjccode.mastercloudapps.adcs.draughts.utils.Console;
 
-public enum MessageView {
-    
-    TITLE("Draughts"),
-    OTHER_GAME("¿Queréis jugar otra"),
-    LOSE("Derrota!!! No puedes mover tus fichas!!!");
+public enum ColorView {
+    WHITE("blancas"),
+    BLACKS("negras"),
+    EMPTY(" ");    
     
     private final String message;
     private final Console console;
     
-    private MessageView(String message) {
+    private ColorView(String message) {
         this.message = message;
         this.console = new Console();
     }
     
     public String getMessage() {
         return this.message;
+    }
+    
+    public String getPieceMessage() {
+        return new String(new char[] { this.getMessage().charAt(0) });
     }
     
     public void write() {

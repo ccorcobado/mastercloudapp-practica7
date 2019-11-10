@@ -6,16 +6,12 @@ import es.urjccode.mastercloudapps.adcs.draughts.models.Coordinate;
 
 public class PlayView extends SubView {
 
-    private static final String[] COLORS = {"blancas", "negras"};
-
-    private static final String MESSAGE = "Derrota!!! No puedes mover tus fichas!!!";
-
     public PlayView() {
         super();
     }
 
     public void interact(PlayController playController) {
-        String color = PlayView.COLORS[playController.getColor().ordinal()];
+        String color = ColorView.values()[playController.getColor().ordinal()].getMessage();
         Error error;
         GameView gameView = new GameView();
         do {
@@ -30,7 +26,7 @@ public class PlayView extends SubView {
         } while (error != null);
         
         if (playController.isBlocked()) {
-            this.console.write(PlayView.MESSAGE);
+            MessageView.LOSE.write();
         }
     }
 }
