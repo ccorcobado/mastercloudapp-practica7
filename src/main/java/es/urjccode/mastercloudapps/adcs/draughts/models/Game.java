@@ -25,7 +25,7 @@ public class Game {
         assert origin != null && target != null;
         
         ValidationMovementContext movementContext = new ValidationMovementContext(this);
-        Error error = movementContext.Validate(origin, target);
+        Error error = movementContext.validate(origin, target);
         
         if (error == null) {
             this.getBoard().move(origin, target);

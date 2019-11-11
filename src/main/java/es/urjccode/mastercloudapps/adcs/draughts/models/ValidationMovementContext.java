@@ -8,7 +8,7 @@ public class ValidationMovementContext {
         this.game = game;
     }
     
-    public Error Validate(Coordinate origin, Coordinate target) {
+    public Error validate(Coordinate origin, Coordinate target) {
         
         ValidationMovementEmptyOrigin emptyOrigin = new ValidationMovementEmptyOrigin(this.game);
         ValidationMovementOppositePiece oppositePiece = new ValidationMovementOppositePiece(this.game);
