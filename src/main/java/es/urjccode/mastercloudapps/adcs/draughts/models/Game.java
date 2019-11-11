@@ -24,36 +24,16 @@ public class Game {
     public Error move(Coordinate origin, Coordinate target) {
         assert origin != null && target != null;
         
-        if (this.getBoard().isEmpty(origin)) {
-            return Error.EMPTY_ORIGIN;
+        ValidationMovementContext movementContext = new ValidationMovementContext(this);
+        Error error = movementContext.Validate(origin, target);
+        
+        if (error == null) {
+            this.getBoard().move(origin, target);
+            this.getTurn().change();
+            return null;
         }
-        Color color = this.getBoard().getColor(origin);
-        if (this.getTurn().getColor() != color) {
-            return Error.OPPOSITE_PIECE;
-        }
-        if (!origin.isDiagonal(target)) {
-            return Error.NOT_DIAGONAL;
-        }
-        Piece piece = this.getBoard().getPiece(origin);
-        if (!piece.isAdvanced(origin, target)) {
-            return Error.NOT_ADVANCED;
-        }
-        if (origin.diagonalDistance(target) >= 3) {
-            return Error.BAD_DISTANCE;
-        }
-        if (!this.getBoard().isEmpty(target)) {
-            return Error.NOT_EMPTY_TARGET;
-        }
-        if (origin.diagonalDistance(target) == 2) {
-            Coordinate between = origin.betweenDiagonal(target);
-            if (this.getBoard().getPiece(between) == null) {
-                return Error.EATING_EMPTY;
-            }
-            this.getBoard().remove(between);
-        }
-        this.getBoard().move(origin, target);
-        this.getTurn().change();
-        return null;
+        else
+            return error;
     }
 
     public Color getColor(Coordinate coordinate) {
